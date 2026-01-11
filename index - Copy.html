@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Sayangku ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #ff4d6d;
+            --soft-pink: #ffc2d1;
+            --light-pink: #fff0f3;
+            --dark-pink: #ffb3c1;
+            --cream: #fef9e7;
+            --text-dark: #5d4e60;
+            --gold: #ffd700;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--light-pink) 0%, #ffeef8 50%, var(--cream) 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-pink);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-pink);
+            border-radius: 10px;
+        }
+
+        /* Floating Hearts Background - Less frequent for mobile */
+        .hearts-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.08);
+            animation: float-up 20s infinite linear;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Loader - Smaller for mobile */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--light-pink);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease;
+        }
+
+        .loader-wrapper.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-heart {
+            font-size: 40px;
+            color: var(--primary-pink);
+            animation: heartbeat 1.2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        /* Hero Section - More compact */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--primary-pink);
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            animation: fadeInDown 2s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            font-weight: 300;
+            animation: fadeInUp 2s ease;
+            max-width: 80%;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Special Photo Section - More compact */
+        .special-photo-section {
+            padding: 40px 15px;
+            text-align: center;
+        }
+
+        .photo-frame {
+            display: inline-block;
+            padding: 15px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
+            transform: rotate(-1deg);
+            transition: transform 0.3s ease;
+            position: relative;
+            margin-bottom: 20px;
+            max-width: 90%;
+        }
+
+        .photo-frame::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px dashed var(--soft-pink);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .special-photo {
+            max-width: 100%;
+            max-height: 300px;
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .photo-caption {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--primary-pink);
+            margin-top: 15px;
+        }
+
+        /* Message Section - More compact with fixed text */
+        .message-section {
+            padding: 40px 15px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .message-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .message-card::before {
+            content: '❝';
+            position: absolute;
+            top: 5px;
+            left: 15px;
+            font-size: 60px;
+            color: var(--soft-pink);
+            font-family: serif;
+        }
+
+        .message-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+            text-align: justify;
+            z-index: 1;
+            position: relative;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: var(--primary-pink);
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        /* Reasons Section - More compact */
+        .reasons-section {
+            padding: 40px 15px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            text-align: center;
+            color: var(--primary-pink);
+            margin-bottom: 30px;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .reason-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--soft-pink);
+        }
+
+        .reason-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.15);
+        }
+
+        .reason-icon {
+            font-size: 2rem;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+        }
+
+        .reason-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .reason-card p {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        /* Memories Gallery Section - More compact */
+        .memories-section {
+            padding: 40px 15px;
+            background: var(--light-pink);
+        }
+
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .memory-card {
+            background: white;
+            padding: 10px 10px 40px 10px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            transform: rotate(0deg);
+            position: relative;
+        }
+
+        .memory-card:nth-child(odd) {
+            transform: rotate(-2deg);
+        }
+
+        .memory-card:nth-child(even) {
+            transform: rotate(2deg);
+        }
+
+        .memory-card:hover {
+            transform: rotate(0deg) scale(1.05) translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 77, 109, 0.2);
+        }
+
+        .memory-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+            display: block;
+        }
+
+        .memory-caption {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2rem;
+            color: var(--primary-pink);
+        }
+
+        /* Promise Section - More compact */
+        .promise-section {
+            padding: 50px 15px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--soft-pink), var(--dark-pink));
+            color: white;
+        }
+
+        .promise-text {
+            font-size: 1.1rem;
+            font-weight: 300;
+            max-width: 85%;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .promise-highlight {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            display: block;
+            margin-top: 15px;
+            color: var(--gold);
+        }
+
+        /* Footer - More compact */
+        footer {
+            text-align: center;
+            padding: 20px 15px;
+            font-size: 0.8rem;
+            color: var(--text-dark);
+            background: var(--cream);
+        }
+
+        /* Music Player - Smaller for mobile */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+        }
+
+        .music-player i {
+            color: var(--primary-pink);
+            font-size: 1.2rem;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+
+        .music-player span {
+            font-size: 0.8rem;
+            color: var(--text-dark);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 480px) {
+            .reasons-grid, .memories-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Loader -->
+    <div class="loader-wrapper" id="loader">
+        <i class="fas fa-heart loader-heart"></i>
+    </div>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">Untuk Sayangku</h1>
+        <p class="hero-subtitle">Website ini khusus kubuat untukmu, karena kamu layak mendapatkan yang terbaik</p>
+        <div style="margin-top: 20px;">
+            <i class="fas fa-chevron-down" style="color: var(--primary-pink); font-size: 1.5rem; animation: bounce 2s infinite;"></i>
+        </div>
+    </section>
+
+    <!-- Special Photo Section -->
+    <section class="special-photo-section">
+        <div class="photo-frame">
+            <!-- ⭐ GANTI FOTO BERHARGA DI SINI ⭐ -->
+            <img src="https://drive.google.com/file/d/1N6li1HAlsOmzkXDUaB2RFU5JrWC8wSCa/view?usp=drive_link" alt="Foto Berharga" class="special-photo">
+        </div>
+        <p class="photo-caption">Foto paling berharga dalam hidupku</p>
+    </section>
+
+    <!-- Message Section -->
+    <section class="message-section">
+        <div class="message-card">
+            <p class="message-text" id="messageText">
+                Sayangku, setiap hari bersamamu adalah anugerah yang tak ternilai. 
+                Senyummu mampu menghapus semua lelah, dan tawamu adalah melodi terindah yang pernah kudengar. Aku tidak tahu apa yang telah kulakukan untuk berhak mendapatkanmu, tapi aku bersyukur setiap hari karena kamu memilihku. Kamu adalah bintang yang paling terang di langit gelapku, pelabuhan teraman di setiap badai, dan rumah yang selalu kurindukan. Terima kasih sudah hadir dan membuat hidupku berwarna. Aku mencintaimu lebih dari kata-kata bisa ungkapkan.
+            </p>
+            <p class="signature">
+                <!-- ⭐ GANTI NAMA KAMU DI SINI ⭐ -->
+                I LOVE YOU CLARA
+            </p>
+        </div>
+    </section>
+
+    <!-- Reasons Section -->
+    <section class="reasons-section">
+        <h2 class="section-title">Alasan Aku Mencintaimu</h2>
+        <div class="reasons-grid">
+            <div class="reason-card">
+                <div class="reason-icon"><i class="fas fa-smile"></i></div>
+                <h3>Senyummu</h3>
+                <p>Cara senyummu mampu membuat hariku menjadi lebih cerah.</p>
+            </div>
+            <div class="reason-card">
+                <div class="reason-icon"><i class="fas fa-heart"></i></div>
+                <h3>Kelembutan Hatimu</h3>
+                <p>Kelembutan dan perhatianmu membuatku merasa beruntung.</p>
+            </div>
+            <div class="reason-card">
+                <div class="reason-icon"><i class="fas fa-laugh"></i></div>
+                <h3>Tawamu</h3>
+                <p>Tawamu yang tulus adalah musik di telingaku.</p>
+            </div>
+            <div class="reason-card">
+                <div class="reason-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <h3>Dukunganmu</h3>
+                <p>Kamu selalu mendukungku, percaya padaku.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memories Gallery Section -->
+    <section class="memories-section">
+        <h2 class="section-title">Galeri Kenangan Kita</h2>
+        <div class="memories-grid">
+            <!-- ⭐ FOTO KENANGAN 1 ⭐ -->
+            <div class="memory-card">
+                <img src="https://drive.google.com/file/d/1M1s6RQJUaIrFMoKiEsB8d2vTqNxeIa6k/view?usp=drive_link" alt="Kenangan 1">
+                <p class="memory-caption">Senyum Manismu</p>
+            </div>
+
+            <!-- ⭐ FOTO KENANGAN 2 ⭐ -->
+            <div class="memory-card">
+                <img src="https://drive.google.com/file/d/113EdRMloIWJqdb-7THVG0j7i02Zodrmp/view?usp=drive_link" alt="Kenangan 2">
+                <p class="memory-caption">Momen Bahagia</p>
+            </div>
+
+            <!-- ⭐ FOTO KENANGAN 3 ⭐ -->
+            <div class="memory-card">
+                <img src="https://drive.google.com/file/d/1MzCtMxqueyaDlkOYceJ-BPNerILbTHVM/view?usp=drive_link" alt="Kenangan 3">
+                <p class="memory-caption">Bersamamu</p>
+            </div>
+
+            <!-- ⭐ FOTO KENANGAN 4 ⭐ -->
+            <div class="memory-card">
+                <img src="https://drive.google.com/file/d/1HbYzhv5tWlFn73j1M9RXahD3Vp2PJQ9A/view?usp=drive_link" alt="Kenangan 4">
+                <p class="memory-caption">Petualangan</p>
+            </div>
+
+            <!-- ⭐ FOTO KENANGAN 5 ⭐ -->
+            <div class="memory-card">
+                <img src="https://drive.google.com/file/d/1Ore_3ettP7BQJfPwt6bL_QIJ5AxXFeDs/view?usp=drive_link" alt="Kenangan 5">
+                <p class="memory-caption">Canda Tawa</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promise Section -->
+    <section class="promise-section">
+        <div class="promise-text">
+            Aku berjanji akan selalu ada di sisimu, di saat senang maupun sedih. Aku akan menjagamu dengan sepenuh hati, mencintaimu tanpa syarat, dan membuatmu bahagia selamanya.
+            <span class="promise-highlight">Selamanya Bersamamu.</span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Dibuat dengan penuh cinta untukmu 💕 | <span id="currentDate"></span></p>
+    </footer>
+
+    <!-- Optional Music Player -->
+    <div class="music-player" title="Mainkan lagu kita">
+        <i class="fas fa-music"></i>
+        <span>Lagu Kita</span>
+    </div>
+
+    <script>
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Create Floating Hearts - Less frequent for mobile
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = Math.random() * 5 + 15 + 's';
+            heart.style.fontSize = Math.random() * 15 + 8 + 'px';
+            
+            document.getElementById('heartsBg').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 20000);
+        }
+
+        // Generate hearts less frequently
+        setInterval(createHeart, 3000);
+        // Create initial hearts
+        for(let i = 0; i < 3; i++) {
+            setTimeout(createHeart, i * 700);
+        }
+
+        // Typing Effect for Message - Faster for mobile
+        const messageText = document.getElementById('messageText');
+        const originalText = messageText.innerText;
+        messageText.innerText = '';
+        let charIndex = 0;
+
+        function typeMessage() {
+            if (charIndex < originalText.length) {
+                messageText.innerText += originalText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeMessage, 20); // Faster typing speed
+            }
+        }
+
+        // Start typing effect after loader disappears
+        setTimeout(typeMessage, 2000);
+
+        // Set Current Date
+        const date = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('currentDate').textContent = date.toLocaleDateString('id-ID', options);
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add bounce animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+                40% { transform: translateY(-15px); }
+                60% { transform: translateY(-8px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+    </script>
+</body>
+</html>
